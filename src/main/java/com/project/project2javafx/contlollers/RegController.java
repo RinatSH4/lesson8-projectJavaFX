@@ -12,13 +12,7 @@ import com.project.project2javafx.DB;
 public class RegController {
 
     @FXML
-    private ResourceBundle resources;
-
-    @FXML
     private Label labelInfo;
-
-    @FXML
-    private URL location;
 
     @FXML
     private Button auth_button;
@@ -69,9 +63,11 @@ public class RegController {
             auth_login.setStyle("-fx-border-color: #e06249");
         else if (pass.length() <= 3)
             auth_password.setStyle("-fx-border-color: #e06249");
-        else if (db.authDBUser(login, md5String(pass))) {
+        else if (!db.authDBUser(login, md5String(pass))) {
+            System.out.println(login + " : " + pass);
             labelInfo.setStyle("-fx-text-fill: red");
             labelInfo.setText("Пользователь не найден");
+            System.out.println(login + " : " + md5String(pass));
         }
         else {
             auth_login.setText("");
@@ -79,6 +75,7 @@ public class RegController {
             labelInfo.setStyle("-fx-text-fill: #fafafa");
             labelInfo.setText("Вы залогинились!");
             auth_button.setDisable(true);
+            System.out.println(login + " : " + md5String(pass));
         }
     }
 

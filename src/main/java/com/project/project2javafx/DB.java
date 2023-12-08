@@ -35,8 +35,24 @@ public class DB {
             ResultSet res = prSt.executeQuery();
             return res.next();
         } catch (SQLException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
+        return false;
+    }
+
+    public boolean isExistsUser(String login) {
+        String sql = "SELECT `id` FROM `users` WHERE login = ?";
+
+        try {
+            PreparedStatement prSt = getDbConnection().prepareStatement(sql);
+            prSt.setString(1, login);
+
+            ResultSet res = prSt.executeQuery();
+            return res.next();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     public void regUser(String login, String email, String pass) {
@@ -64,6 +80,38 @@ public class DB {
 
             ResultSet res = prSt.executeQuery();
             return res.next();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public String getEmail(String login) {
+        String sql = "SELECT `email` FROM `users` WHERE `login` = ?";
+
+        try {
+            PreparedStatement prSt = getDbConnection().prepareStatement(sql);
+            prSt.setString(1, login);
+
+            ResultSet res = prSt.executeQuery();
+            res.next();
+            return res.getString("email");
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return "";
+
+    }
+
+    public void setUpdate(String login, String email, String pass) {
+        String sql = "UPDATE `users` SET `email` = ?, `password` = ? WHERE `users`.`login` = ?";
+
+        try {
+            PreparedStatement prSt = getDbConnection().prepareStatement(sql);
+            prSt.setString(1, email);
+            prSt.setString(2, pass);
+            prSt.setString(3, login);
+            prSt.executeUpdate();
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
