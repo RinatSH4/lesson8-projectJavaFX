@@ -8,29 +8,29 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="356.0" prefWidth="374.0" style="-fx-background-color: #343434;" stylesheets="@../../../styles/main.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.project2javafx.contlollers.HomeworkController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #343434;" stylesheets="@../../../styles/main.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.project2javafx.contlollers.HomeworkController">
    <children>
-      <Label layoutX="47.0" layoutY="36.0" text="Кабинет пользователя" textFill="WHITE">
+      <Label layoutX="147.0" layoutY="38.0" text="Кабинет пользователя" textFill="WHITE">
          <font>
             <Font name="Montserrat Light" size="25.0" />
          </font>
       </Label>
-      <TextField fx:id="e_login" focusTraversable="false" layoutX="74.0" layoutY="95.0" prefHeight="40.0" prefWidth="221.0" promptText="Логин">
+      <TextField fx:id="e_login" focusTraversable="false" layoutX="174.0" layoutY="97.0" prefHeight="40.0" prefWidth="221.0" promptText="Логин">
          <font>
             <Font name="Montserrat Regular" size="14.0" />
          </font>
       </TextField>
-      <TextField fx:id="e_mail" focusTraversable="false" layoutX="74.0" layoutY="142.0" prefHeight="40.0" prefWidth="221.0" promptText="e-mail">
+      <TextField fx:id="e_mail" focusTraversable="false" layoutX="174.0" layoutY="144.0" prefHeight="40.0" prefWidth="221.0" promptText="e-mail">
          <font>
             <Font name="Montserrat Regular" size="14.0" />
          </font>
       </TextField>
-      <PasswordField fx:id="e_password" focusTraversable="false" layoutX="74.0" layoutY="189.0" prefHeight="39.0" prefWidth="221.0" promptText="Пароль" styleClass="text-input">
+      <PasswordField fx:id="e_password" focusTraversable="false" layoutX="174.0" layoutY="191.0" prefHeight="39.0" prefWidth="221.0" promptText="Пароль" styleClass="text-input">
          <font>
             <Font name="Montserrat Light" size="14.0" />
          </font>
       </PasswordField>
-      <Button fx:id="edit_button" focusTraversable="false" layoutX="96.0" layoutY="254.0" mnemonicParsing="false" text="Изменить данные" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="edit_button" focusTraversable="false" layoutX="194.0" layoutY="266.0" mnemonicParsing="false" text="Изменить данные" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Montserrat Regular" size="15.0" />
          </font>
@@ -38,10 +38,18 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label fx:id="infoLabel" layoutX="123.0" layoutY="316.0" textAlignment="CENTER" textFill="WHITE">
+      <Label fx:id="infoLabel" layoutX="223.0" layoutY="318.0" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Montserrat Light" size="11.0" />
          </font>
       </Label>
+      <Button fx:id="exit" focusTraversable="false" layoutX="481.0" layoutY="35.0" mnemonicParsing="false" text="Назад" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Montserrat Regular" size="15.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>

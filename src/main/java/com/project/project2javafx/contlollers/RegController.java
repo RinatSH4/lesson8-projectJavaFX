@@ -1,13 +1,20 @@
 package com.project.project2javafx.contlollers;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.math.BigInteger;
-import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ResourceBundle;
+
+import com.project.project2javafx.HelloApplication;
+import com.project.project2javafx.models.User;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import com.project.project2javafx.DB;
+import javafx.stage.Stage;
 
 public class RegController {
 
@@ -40,6 +47,8 @@ public class RegController {
 
     private DB db = new DB();
 
+    private static String authLogin;
+
 
     @FXML
     void initialize() {
@@ -48,13 +57,21 @@ public class RegController {
         });
 
         auth_button.setOnAction(event -> {
-            authUser();
+            try {
+                authUser(event);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         });
     }
 
-    private void authUser() {
+    public static String getLogin() {
+        return authLogin;
+    }
+    private void authUser(ActionEvent event) throws IOException {
         String login = auth_login.getCharacters().toString();
         String pass = auth_password.getCharacters().toString();
+        authLogin = login;
 
         auth_login.setStyle("-fx-border-color: #fafafa");
         auth_password.setStyle("-fx-border-color: #fafafa");
@@ -76,6 +93,14 @@ public class RegController {
             labelInfo.setText("Вы залогинились!");
             auth_button.setDisable(true);
             System.out.println(login + " : " + md5String(pass));
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            HelloApplication.setScene("articles-main.fxml", stage);
+
+            FileOutputStream fos = new FileOutputStream("user.settings");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(new User(login));
+            oos.close();
         }
     }
 

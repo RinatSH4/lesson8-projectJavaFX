@@ -1,14 +1,19 @@
 package com.project.project2javafx.contlollers;
 
+import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.project.project2javafx.DB;
+import com.project.project2javafx.HelloApplication;
+import com.project.project2javafx.models.User;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class HomeworkController {
 
@@ -36,12 +41,36 @@ public class HomeworkController {
     DB db = new DB();
 
     @FXML
-    void initialize() {
-        e_login.setText("Admin");
-        e_mail.setText(db.getEmail("Admin"));
+    private Button exit;
+
+    @FXML
+    void initialize() throws IOException, ClassNotFoundException {
+        File file = new File("user.settings");
+        if (file.exists()) {
+            FileInputStream fis = new FileInputStream("user.settings");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            User user = (User) ois.readObject();
+            ois.close();
+            if (db.isExistsUser(user.getLogin())) {
+                e_login.setText(user.getLogin());
+                e_mail.setText(db.getEmail(user.getLogin()));
+            }
+        } else {
+            e_login.setText(RegController.getLogin());
+            e_mail.setText(db.getEmail(RegController.getLogin()));
+        }
 
         edit_button.setOnAction(event -> {
             updateTable();
+        });
+
+        exit.setOnAction(event -> {
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            try {
+                HelloApplication.setScene("articles-main.fxml", stage);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         });
     }
 

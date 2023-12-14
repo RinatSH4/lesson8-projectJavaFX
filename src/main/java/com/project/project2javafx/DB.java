@@ -105,7 +105,6 @@ public class DB {
 
     public void setUpdate(String login, String email, String pass) {
         String sql = "UPDATE `users` SET `email` = ?, `password` = ? WHERE `users`.`login` = ?";
-
         try {
             PreparedStatement prSt = getDbConnection().prepareStatement(sql);
             prSt.setString(1, email);
@@ -116,4 +115,17 @@ public class DB {
             throw new RuntimeException(e);
         }
     }
+
+    public ResultSet getArticles() throws SQLException, ClassNotFoundException {
+        String sql = "SELECT `intro`, `title` FROM `articles`";
+        Statement statement = getDbConnection().createStatement();
+        return statement.executeQuery(sql);
+    }
 }
+//    При подключении может возникнуть ошибка,
+//    что будет связана с разными часовыми поясами.
+//    Чтобы её исправить пропишите к строке подключения дополнительные опции:
+
+// jdbc:mysql://localhost/db
+// ?useUnicode=true&useJDBCCompliantTimezoneShift=
+// true&useLegacyDatetimeCode=false&serverTimezone=UTC
