@@ -121,6 +121,32 @@ public class DB {
         Statement statement = getDbConnection().createStatement();
         return statement.executeQuery(sql);
     }
+
+    public void addArticle(String title, String intro, String text) throws SQLException, ClassNotFoundException {
+        String sql = "INSERT INTO `articles` (`title`, `intro`, `text`, `views`) VALUES (?, ?, ?, 10)";
+        PreparedStatement prSt = getDbConnection().prepareStatement(sql);
+        prSt.setString(1, title);
+        prSt.setString(2, intro);
+        prSt.setString(3, text);
+        prSt.executeUpdate();
+    }
+
+    public ResultSet getArticleText(String articalTitle) throws SQLException, ClassNotFoundException {
+        String sql = "SELECT * FROM `articles` WHERE `title` = ?";
+        PreparedStatement prSt = getDbConnection().prepareStatement(sql);
+        prSt.setString(1, articalTitle);
+        return prSt.executeQuery();
+    }
+
+//    public String getArticleId(String articalTitle) throws SQLException, ClassNotFoundException {
+//        String sql = "SELECT * FROM `articles` WHERE `title` = ?";
+//        PreparedStatement prSt = getDbConnection().prepareStatement(sql);
+//        prSt.setString(1, articalTitle);
+//
+//        ResultSet res = prSt.executeQuery();
+//        res.next();
+//        return res.getString("id");
+//    }
 }
 //    При подключении может возникнуть ошибка,
 //    что будет связана с разными часовыми поясами.

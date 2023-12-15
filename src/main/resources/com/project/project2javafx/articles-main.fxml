@@ -10,12 +10,12 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #343434;" stylesheets="@../../../styles/main.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.project2javafx.contlollers.articlesPanelController">
     <children>
-        <Label layoutX="69.0" layoutY="29.0" text="Новости с сайта" textFill="WHITE">
+        <Label layoutX="196.0" layoutY="34.0" text="Новости с сайта" textFill="WHITE" AnchorPane.topAnchor="30.0">
             <font>
                 <Font name="Montserrat Light" size="25.0" />
             </font>
         </Label>
-        <Button fx:id="exit_button" focusTraversable="false" layoutX="476.0" layoutY="26.0" mnemonicParsing="false" text="Выйти" textAlignment="CENTER" textFill="WHITE" AnchorPane.topAnchor="30.0">
+        <Button fx:id="exit_button" focusTraversable="false" layoutX="495.0" layoutY="30.0" mnemonicParsing="false" text="Выйти" textAlignment="CENTER" textFill="WHITE" AnchorPane.topAnchor="27.0">
             <font>
                 <Font name="Montserrat Regular" size="15.0" />
             </font>
@@ -23,7 +23,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-      <Button fx:id="edit_btn" focusTraversable="false" layoutX="312.0" layoutY="25.0" mnemonicParsing="false" text="Редактировать" textAlignment="CENTER" textFill="WHITE" AnchorPane.topAnchor="30.0">
+      <Button fx:id="edit_btn" focusTraversable="false" layoutX="422.0" layoutY="30.0" mnemonicParsing="false" text="ЛК" textAlignment="CENTER" textFill="WHITE" AnchorPane.topAnchor="27.0">
          <font>
             <Font name="Montserrat Regular" size="15.0" />
          </font>
@@ -36,5 +36,13 @@
             <VBox fx:id="panelVbox" prefHeight="318.0" prefWidth="598.0" style="-fx-background-color: #343434;" />
          </content>
       </ScrollPane>
+      <Button fx:id="add_btn" focusTraversable="false" layoutX="14.0" layoutY="31.0" mnemonicParsing="false" text="Добавить статью" textAlignment="CENTER" textFill="WHITE" AnchorPane.topAnchor="27.0">
+         <font>
+            <Font name="Montserrat Regular" size="15.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
     </children>
 </AnchorPane>
