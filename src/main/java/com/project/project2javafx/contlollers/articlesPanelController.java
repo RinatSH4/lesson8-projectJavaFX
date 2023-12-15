@@ -25,9 +25,9 @@ public class articlesPanelController {
     @FXML
     private Button exit_button, add_btn, edit_btn;
 
-    private static String id;
+    private static int id;
 
-    public static String getId() {
+    public static int getId() {
         //описать метод получения id из выбранной статьи
         return id;
     }
@@ -58,9 +58,9 @@ public class articlesPanelController {
                 System.out.println(articalTitle);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 try {
-                    id = articalTitle;
+                    id = db.getArticleId(articalTitle);
                     HelloApplication.setScene("show-article.fxml", stage);
-                } catch (IOException e) {
+                } catch (IOException | SQLException | ClassNotFoundException e) {
                     throw new RuntimeException(e);
                 }
 

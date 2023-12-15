@@ -131,22 +131,22 @@ public class DB {
         prSt.executeUpdate();
     }
 
-    public ResultSet getArticleText(String articalTitle) throws SQLException, ClassNotFoundException {
-        String sql = "SELECT * FROM `articles` WHERE `title` = ?";
+    public ResultSet getArticleText(int id) throws SQLException, ClassNotFoundException {
+        String sql = "SELECT * FROM `articles` WHERE `id` = ?";
         PreparedStatement prSt = getDbConnection().prepareStatement(sql);
-        prSt.setString(1, articalTitle);
+        prSt.setString(1, String.valueOf(id));
         return prSt.executeQuery();
     }
 
-//    public String getArticleId(String articalTitle) throws SQLException, ClassNotFoundException {
-//        String sql = "SELECT * FROM `articles` WHERE `title` = ?";
-//        PreparedStatement prSt = getDbConnection().prepareStatement(sql);
-//        prSt.setString(1, articalTitle);
-//
-//        ResultSet res = prSt.executeQuery();
-//        res.next();
-//        return res.getString("id");
-//    }
+    public int getArticleId(String articalTitle) throws SQLException, ClassNotFoundException {
+        String sql = "SELECT * FROM `articles` WHERE `title` = ?";
+        PreparedStatement prSt = getDbConnection().prepareStatement(sql);
+        prSt.setString(1, articalTitle);
+
+        ResultSet res = prSt.executeQuery();
+        res.next();
+        return res.getInt("id");
+    }
 }
 //    При подключении может возникнуть ошибка,
 //    что будет связана с разными часовыми поясами.
